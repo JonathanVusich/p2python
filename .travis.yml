@@ -1,0 +1,12 @@
+language: python
+python: 3.7
+dist: xenial
+sudo: true
+before_install:
+    - pip install pytest pytest-cov
+    - pip install coveralls
+    - pip install -r requirements.txt
+script:
+    - py.test --cov p2python
+after_success:
+    - coveralls
