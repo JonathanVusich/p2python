@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from p2python.interfaces.node_id.node_id_interface import NodeIDInterface
 
 """ NodeID:
 
@@ -13,10 +13,5 @@ Attributes:
 """
 
 
-@dataclass(frozen=True)
-class NodeID:
-    public_key: str
-    ip_address: str
-    port: int
-    timestamp: int
-    id: str
+class NodeID(NodeIDInterface):
+    pass
