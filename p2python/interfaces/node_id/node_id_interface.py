@@ -11,6 +11,7 @@ be subclassed as follows:
     class NodeID(NodeIDInterface):
         pass
 
+
 Extra helper methods can be added to your NodeID class
 by substituting a custom NodeID class for the base NodeID class.
 """
