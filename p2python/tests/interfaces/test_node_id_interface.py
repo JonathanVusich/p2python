@@ -8,7 +8,7 @@ def test_node_id_interface_well_formed():
     assert node.public_key == "string"
     assert node.ip_address == "string"
     assert node.port == 123
-    assert node.timestamp == 123
+    assert node.nonce == 123
     assert node.id == "string"
 
 
@@ -21,7 +21,7 @@ def test_node_id_interface_frozen():
     with pytest.raises(FrozenInstanceError):
         node.port = 234
     with pytest.raises(FrozenInstanceError):
-        node.timestamp = 234
+        node.nonce = 234
     with pytest.raises(FrozenInstanceError):
         node.id = "changed"
 
