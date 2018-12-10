@@ -12,10 +12,29 @@ by substituting a custom IDGenerator class for the base IDGenerator class.
 
 class IDGeneratorInterface(ABC):
     hash_generator: object
-    nonce = 0
+    _nonce = 0
     _public_key = None
+    _public_key_bytes = None
     _ip_address = None
+    _ip_address_bytes = None
     _port = None
+    _port_bytes = None
+
+    @property
+    def public_key(self):
+        return self._public_key
+
+    @property
+    def ip_address(self):
+        return self._ip_address
+
+    @property
+    def port(self):
+        return self._port
+
+    @property
+    def nonce(self):
+        return self._nonce
 
     @abstractmethod
     def add_public_key(self, public_key: str) -> None:
@@ -27,6 +46,10 @@ class IDGeneratorInterface(ABC):
 
     @abstractmethod
     def add_port(self, port: int) -> None:
+        pass
+
+    @abstractmethod
+    def ready(self) -> bool:
         pass
 
     @abstractmethod
