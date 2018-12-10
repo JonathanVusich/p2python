@@ -9,7 +9,7 @@ def verify_public_key(public_key: str) -> bool:
             logger.error("Public key does not have an '0x' prefix!")
             return False
     elif not len(public_key) == 64:
-        logger.error("Public key is not a valid length!")
+        logger.error("Public key should have a length of 64 characters! Is {} characters long.".format(len(public_key)))
         return False
     try:
         int(public_key, 16)
