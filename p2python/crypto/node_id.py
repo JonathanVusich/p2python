@@ -8,7 +8,7 @@ Attributes:
     public_key: str
     ip_address: str
     port: int
-    timestamp: int
+    nonce: int
     id: str
 """
 
