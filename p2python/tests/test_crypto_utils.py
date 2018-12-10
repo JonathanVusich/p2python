@@ -6,6 +6,10 @@ def test_verify_public_key_well_formed():
     assert verify_public_key("0xc0ffee254729296a45a3885639AC7E10F9d5497945a3885639AC7E10F9d54979")
 
 
+def test_verify_public_key_no_prefix_66_bytes():
+    assert not verify_public_key("c0ffee254729296a45a38885639AC7E10F9d5497945a3885639AC7E10F9d549792")
+
+
 def test_verify_public_key_too_long_67_bytes():
     assert not verify_public_key("0xc0ffee254729296a45a3885639AC7E10F9d5497945a3885639AC7E10F9d549792")
 
