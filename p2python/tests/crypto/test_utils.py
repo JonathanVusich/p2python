@@ -153,7 +153,7 @@ def test_generate_id_bad_port():
 
 def test_validate_id_well_formed():
     mock_id = Mock()
-    mock_id.public_key = "0xc0fffe254729295a45a2885639AC7E10F9d5497945a3875639AC7E10F9d54989"
+    mock_id.public_key = "0xc0fffe254729295a45a2885639AC7E10F8d5497945a3875639AC7E10F9d54989"
     mock_id.ip_address = "104.218.67.207"
     mock_id.port = 65536
     mock_id.nonce = 3476617
