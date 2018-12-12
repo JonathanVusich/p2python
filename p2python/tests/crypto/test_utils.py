@@ -159,3 +159,64 @@ def test_validate_id_well_formed():
     mock_id.nonce = 3476617
     mock_id.id = "0000013320276ec11fb237e6c3bed22be1f0a08e5c0a1a9b135a803a6835da35"
     assert validate_id(mock_id)
+
+
+def test_validate_id_bad_public_key_input():
+    mock_id = Mock()
+    mock_id.public_key = "0xc0ffe254729295a45a2885639AC7E10F8d5497945a3875639AC7E10F9d54989"
+    mock_id.ip_address = "104.218.67.207"
+    mock_id.port = 65536
+    mock_id.nonce = 3476617
+    mock_id.id = "0000013320276ec11fb237e6c3bed22be1f0a08e5c0a1a9b135a803a6835da35"
+    assert not validate_id(mock_id)
+
+
+def test_validate_id_bad_ip_address_input():
+    mock_id = Mock()
+    mock_id.public_key = "0xc0fffe254729295a45a2885639AC7E10F8d5497945a3875639AC7E10F9d54989"
+    mock_id.ip_address = 12345
+    mock_id.port = 65536
+    mock_id.nonce = 3476617
+    mock_id.id = "0000013320276ec11fb237e6c3bed22be1f0a08e5c0a1a9b135a803a6835da35"
+    assert not validate_id(mock_id)
+
+
+def test_validate_id_bad_port_input():
+    mock_id = Mock()
+    mock_id.public_key = "0xc0fffe254729295a45a2885639AC7E10F8d5497945a3875639AC7E10F9d54989"
+    mock_id.ip_address = "104.218.67.207"
+    mock_id.port = "65536"
+    mock_id.nonce = 3476617
+    mock_id.id = "0000013320276ec11fb237e6c3bed22be1f0a08e5c0a1a9b135a803a6835da35"
+    assert not validate_id(mock_id)
+
+
+def test_validate_id_bad_nonce_input():
+    mock_id = Mock()
+    mock_id.public_key = "0xc0fffe254729295a45a2885639AC7E10F8d5497945a3875639AC7E10F9d54989"
+    mock_id.ip_address = "104.218.67.207"
+    mock_id.port = 65536
+    mock_id.nonce = "3476617"
+    mock_id.id = "0000013320276ec11fb237e6c3bed22be1f0a08e5c0a1a9b135a803a6835da35"
+    assert not validate_id(mock_id)
+
+
+def test_validate_id_bad_id_input():
+    mock_id = Mock()
+    mock_id.public_key = "0xc0fffe254729295a45a2885639AC7E10F8d5497945a3875639AC7E10F9d54989"
+    mock_id.ip_address = "104.218.67.207"
+    mock_id.port = 65536
+    mock_id.nonce = 3476617
+    mock_id.id = 13320276
+    assert not validate_id(mock_id)
+
+
+def test_validate_id_invalid_id():
+    mock_id = Mock()
+    mock_id.public_key = "0xc0fffe254729295a45a2885639AC7E10F8d5497945a3875639AC7E10F9e54989"
+    mock_id.ip_address = "154.218.67.207"
+    mock_id.port = 65536
+    mock_id.nonce = 1870510
+    mock_id.id = "0000013320276ec11fb237e6c3bed22be1f0a08e5c0a1a9b135a803a6835da35"
+    assert not validate_id(mock_id)
+
