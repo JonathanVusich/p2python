@@ -23,4 +23,4 @@ class NodeIDInterface(ABC):
     ip_address: str
     port: int
     nonce: int
-    id: bytes
+    id: str
