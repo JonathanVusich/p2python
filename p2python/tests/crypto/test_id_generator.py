@@ -1,6 +1,7 @@
 import pytest
 from p2python.crypto.id_generator import IDGenerator
 
+
 def test_id_generator_init():
     id_gen = IDGenerator()
     assert not id_gen._public_key
@@ -10,6 +11,10 @@ def test_id_generator_init():
     assert not id_gen._ip_address_bytes
     assert not id_gen._port_bytes
     assert id_gen._nonce == 0
+    assert not id_gen.public_key
+    assert not id_gen.ip_address
+    assert not id_gen.port
+    assert id_gen.nonce == 0
 
 
 def test_id_generator_add_public_key_well_formed():
