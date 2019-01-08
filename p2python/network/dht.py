@@ -11,7 +11,7 @@ cfg = load_config(__name__)
 class DHT:
 
     def __init__(self):
-        self.load_config()
+        pass
 
     def generate_node_id(self):
         pass

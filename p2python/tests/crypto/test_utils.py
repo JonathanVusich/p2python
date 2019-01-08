@@ -3,6 +3,13 @@ from unittest.mock import Mock
 from p2python.crypto.utils import *
 
 
+def test_generate_keypair():
+    private_key, public_key = generate_keypair()
+    assert isinstance(private_key, int)
+    assert len(bin(private_key)[2:].zfill(512)) == 512
+    assert verify_public_key(public_key)
+
+
 def test_verify_public_key_well_formed():
     assert verify_public_key("0xc0ffee254729296a45a3885639AC7E10F9d5497945a3885639AC7E10F9d54979")
 
@@ -57,6 +64,16 @@ def test_add_0x_prefix_has_prefix():
     public_key = add_0x_prefix("0xc0ffee254729296a45a3885639AC7E10F9d5497945a3885639AC7E10F9d54979")
     assert public_key.startswith("0x")
     assert public_key == "0xc0ffee254729296a45a3885639AC7E10F9d5497945a3885639AC7E10F9d54979"
+
+
+def test_has_0x_prefix_valid():
+    public_key = "0x13adfa2erfa"
+    assert has_0x_prefix(public_key)
+
+
+def test_has_0x_prefix_invalid():
+    public_key = "q2ewfasdfasdf"
+    assert not has_0x_prefix(public_key)
 
 
 def test_validate_id_digest_invalid_length():

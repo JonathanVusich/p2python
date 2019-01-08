@@ -1,8 +1,18 @@
 import logging
 from .node_id import NodeID
-from hashlib import shake_256
+from hashlib import shake_256, sha3_256
+import secrets
+import sys
 
 logger = logging.getLogger(__name__)
+
+
+def generate_keypair() -> tuple:
+    private_key = secrets.randbits(512)
+    hash_gen = sha3_256()
+    hash_gen.update(private_key.to_bytes(64, sys.byteorder))
+    public_key = add_0x_prefix(bytes(memoryview(hash_gen.digest())[:32]).hex())
+    return private_key, public_key
 
 
 def verify_public_key(public_key: str) -> bool:
@@ -22,9 +32,15 @@ def verify_public_key(public_key: str) -> bool:
 
 
 def remove_0x_prefix(public_key: str) -> str:
-    if public_key.startswith("0x"):
+    if has_0x_prefix(public_key):
         return public_key[2:]
     return public_key
+
+
+def has_0x_prefix(public_key: str) -> bool:
+    if public_key.startswith("0x"):
+        return True
+    return False
 
 
 def add_0x_prefix(public_key: str) -> str:
