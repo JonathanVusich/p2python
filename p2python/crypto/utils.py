@@ -2,7 +2,7 @@ import logging
 from .node_id import NodeID
 from hashlib import shake_256
 
-logger = logging.getLogger("p2python.crypto.utils")
+logger = logging.getLogger(__name__)
 
 
 def verify_public_key(public_key: str) -> bool:
